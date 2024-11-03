@@ -15,12 +15,10 @@ import (
 func ApplyMigrations(conf *config.Config) {
 	absPath, _ := filepath.Abs(conf.MigrationsPath)
 
-	fmt.Printf("postgres://%s:%s@%s:%s/%s?sslmode=disable/n",
-		conf.DbUser, conf.DbPassword, conf.DbHost, conf.DbPort, conf.DbName)
 	migrator, err := migrate.New(
 		"file://"+absPath,
 		fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
-			conf.DbUser, conf.DbPassword, conf.DbHost, conf.DbPort, conf.DbName),
+			conf.DbConfig.User, conf.DbConfig.Password, conf.DbConfig.Host, conf.DbConfig.Port, conf.DbConfig.Name),
 	)
 	if err != nil {
 		panic(err)

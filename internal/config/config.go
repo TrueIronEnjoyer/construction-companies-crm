@@ -7,15 +7,23 @@ import (
 )
 
 type Config struct {
-	DbHost         string
-	DbPort         string
-	DbUser         string
-	DbPassword     string
-	DbName         string
-	Host           string
-	Port           string
+	DbConfig       DbConfig
+	HostConfig     HostConfig
 	Env            string
 	MigrationsPath string
+}
+
+type DbConfig struct {
+	Host     string
+	Port     string
+	User     string
+	Password string
+	Name     string
+}
+
+type HostConfig struct {
+	Host string
+	Port string
 }
 
 func NewConfig() Config {
@@ -29,13 +37,17 @@ func NewConfig() Config {
 	}
 
 	conf := Config{
-		DbHost:         confMap["db_host"],
-		DbPort:         confMap["db_port"],
-		DbUser:         confMap["db_user"],
-		DbPassword:     confMap["db_password"],
-		DbName:         confMap["db_name"],
-		Host:           confMap["host"],
-		Port:           confMap["port"],
+		DbConfig: DbConfig{
+			Host:     confMap["db_host"],
+			Port:     confMap["db_port"],
+			User:     confMap["db_user"],
+			Password: confMap["db_password"],
+			Name:     confMap["db_name"],
+		},
+		HostConfig: HostConfig{
+			Host: confMap["host"],
+			Port: confMap["port"],
+		},
 		Env:            confMap["env"],
 		MigrationsPath: confMap["migrations_path"],
 	}
