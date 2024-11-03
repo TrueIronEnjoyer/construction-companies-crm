@@ -3,7 +3,6 @@ package migrator
 import (
 	"construction-companies-crm/internal/config"
 	"errors"
-	"fmt"
 	"log/slog"
 	"path/filepath"
 
@@ -17,8 +16,7 @@ func ApplyMigrations(conf *config.Config) {
 
 	migrator, err := migrate.New(
 		"file://"+absPath,
-		fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
-			conf.DbConfig.User, conf.DbConfig.Password, conf.DbConfig.Host, conf.DbConfig.Port, conf.DbConfig.Name),
+		conf.DbConfig.ConnStr,
 	)
 	if err != nil {
 		panic(err)

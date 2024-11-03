@@ -36,4 +36,4 @@ CREATE TABLE IF NOT EXISTS apartment_employee (
     id SERIAL PRIMARY KEY,
     apartment_id INT REFERENCES apartments(id) ON DELETE CASCADE,
     buyer_id INT REFERENCES buyers(id) ON DELETE CASCADE
-}
+);

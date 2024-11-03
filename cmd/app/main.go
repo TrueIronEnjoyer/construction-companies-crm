@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	conf := config.NewConfig()
+	config.InitConfig()
+	conf := config.GetConfig()
 
-	migrator.ApplyMigrations(&conf)
+	migrator.ApplyMigrations(conf)
 }

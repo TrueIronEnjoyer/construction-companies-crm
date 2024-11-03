@@ -6,6 +6,6 @@ CREATE TABLE blocks (
 
 CREATE TABLE IF NOT EXISTS block_complex (
     id SERIAL PRIMARY KEY,
-    block_id INT REFERENCES blocks(id), ON DELETE CASCADE
+    block_id INT REFERENCES blocks(id) ON DELETE CASCADE,
     complex_id INT REFERENCES complexes(id) ON DELETE CASCADE
 );
